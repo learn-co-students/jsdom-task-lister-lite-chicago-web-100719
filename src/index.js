@@ -1,9 +1,9 @@
 
-document.addEventListener("DOMContentLoaded", () => {
-  const input = document.getElementById('create-task-form')
-  let list = document.getElementById('tasks')
+document.addEventListener("DOMContentLoaded", function() {
+  const formElement = document.getElementById('create-task-form')
+  let tasks = document.getElementById('tasks')
 
-  input.addEventListener('submit', createNewTask)
+  formElement.addEventListener('submit', createNewTask)
 
 });
 
@@ -12,16 +12,15 @@ function createNewTask() {
   let task = document.getElementById('new-task-description')
   let li = document.createElement('li')
   li.innerText = task.value
-  li.innerHTML = `${task.value}`+ `<button data-description =${task.value} onclick="destroyTask()">X</button>` 
-  // let list = document.getElementById('tasks')
-  list.appendChild(li)
+  li.innerHTML = `${task.value}`+ ` <button data-description=${task.value} onclick="destroyTask(this.parentElement)">X</button>` 
+  tasks.appendChild(li)
 
   event.target.reset();
 
 }
 
-function destroyTask() {
-
+function destroyTask(element) {
+  let li = element
   li.remove()
   
 }
